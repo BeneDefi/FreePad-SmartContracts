@@ -17,7 +17,7 @@ contract FreepadNFT is ERC721URIStorage, Ownable {
     event Minted(address indexed recipient, uint256 tokenId);
     event Burned(uint256 tokenId);
 
-    constructor() ERC721("FreepadNFT", "FNFT") Ownable(msg.sender) {
+    constructor() ERC721("Freepad Pass", "$FREEPAD") Ownable(msg.sender) {
         priceFeed = AggregatorV3Interface(0x143db3CEEfbdfe5631aDD3E50f7614B6ba708BA7);
     }
 
@@ -87,7 +87,7 @@ contract FreepadNFT is ERC721URIStorage, Ownable {
      * @param tokenId The ID of the token to burn.
      */
     function burn(uint256 tokenId) external {
-        require(ownerOf(tokenId) == msg.sender, "Only the owner can burn their Soulbound Token");
+        require(ownerOf(tokenId) == msg.sender, "INVALID_USER");
         _burn(tokenId);
         _hasSoulbound[msg.sender] = false;
         emit Burned(tokenId);
